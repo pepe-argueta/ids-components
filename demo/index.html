@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>mi-componente demo</title>
+
+  <script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+  <link rel="stylesheet" href="/bower_components/material-design-lite/material.min.css">
+  <script src="/bower_components/material-design-lite/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+  <link rel="import" href="../ids-button.html">
+  <link rel="import" href="../ids-input.html">
+  <link rel="import" href="../assets/ids-styles.html">
+</head>
+
+<body>
+  <div class="centered">
+    <h3>Agenda IDS </h3>
+
+    <!-- <ids-button action="accept">Aceptar</ids-button>
+
+    <ids-button action="cancel">Cancelar</ids-button>
+
+    <ids-button action="update">Editar</ids-button>
+
+    <ids-button action="save">Guardar</ids-button>
+
+    <ids-button action="search">Buscar</ids-button>
+
+    <ids-button action="delete">Eliminar</ids-button> -->
+
+    <div id="datos">
+
+    </div>
+
+    <div class="mdl-grid">
+      <ids-input type="text" name="nombre_contacto" title="Contacto" class="mdl-cell mdl-cell--6-col"></ids-input>
+      <ids-input type="tel" name="telefono_personal" title="Telefono Personal" class="mdl-cell mdl-cell--6-col"></ids-input>
+      <ids-input type="tel" name="telefono_oficina" title="Telefono Oficina" class="mdl-cell mdl-cell--6-col"></ids-input>
+      <ids-input type="email" name="correo_personal" title="Correo Personal" class="mdl-cell mdl-cell--6-col"></ids-input>
+      <ids-input type="email" name="correo_oficina" title="Correo Oficina" class="mdl-cell mdl-cell--6-col"></ids-input>
+      <ids-input type="date" name="fecha_nacimiento" title="Fecha de Nacimiento" class="mdl-cell mdl-cell--6-col"></ids-input>
+      <ids-button action="save" class="mdl-cell mdl-cell--12-col">Guardar</ids-button>
+    </div>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <thead>
+        <tr>
+          <th>Contacto</th>
+          <th>Telefono Personal</th>
+          <th>Telefono Oficina</th>
+          <th>Correo Personal</th>
+          <th>Correo Oficina</th>
+          <th>Fecha de Nacimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="nombre_contacto"></td>
+          <td id="telefono_personal"></td>
+          <td id="telefono_oficina"></td>
+          <td id="correo_personal"></td>
+          <td id="correo_oficina"></td>
+          <td id="fecha_nacimiento"></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <script>
+      document.addEventListener('onClickIdsButton', function (e) {
+        console.log(e.detail);
+      })
+      const obj = {};
+      
+
+      document.addEventListener('onChangeInput', function (e) {
+        //console.log(`${e.detail.name} : ${e.detail.value} valid: ${e.detail.isValid}`);
+        obj[e.detail.name] = e.detail.value;
+
+        var fields = Object.keys(obj);
+        fields.forEach(field => {
+          if (field != 'id') {
+            document.querySelector(`#${field}`).textContent = obj[field];
+          }
+        });
+
+      })
+    </script>
+  </div>
+</body>
+
+</html>

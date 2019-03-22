@@ -1,0 +1,69 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="ids-button">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+                --button-background-color: white;
+            }
+
+            button {
+                background-color: var(--button-background-color, rgb(255, 255, 255, 0));
+                color: var(--button-color, rgba(0, 0, 0, 0));
+                border: 3px solid var(--button-color, rgba(0, 0, 0, 0));
+                padding: 7px;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman';
+                font-size: 15px;
+                margin-bottom: 15px;
+                cursor: pointer;
+                width: 120px;
+            }
+            button:hover {
+                background-color: var(--button-color, rgb(255, 255, 255, 0));
+                color: var(--button-background-color, rgba(0, 0, 0, 0));
+            }
+        </style>
+
+        <button>
+            <slot></slot>
+        </button>
+
+    </template>
+    <script>
+        class IdsButton extends Polymer.Element {
+
+            static get is() {
+                return 'ids-button';
+            }
+
+            static get properties() {
+                return {
+                    action: {
+                        type: String,
+                        reflectToAttribute: true
+                    },
+                    colorbtn: {
+                        type: String,
+                    }
+                }
+            }
+
+            constructor() {
+                super();
+                this.addEventListener('click', this.actionEvent.bind(this));
+            }
+
+            actionEvent(e) {
+
+                let action = this.dispatchEvent(new CustomEvent('onClickIdsButton', {
+                    detail: this.action,
+                    bubbles: true,
+                    composed: true
+                }));
+            }
+        }
+        window.customElements.define(IdsButton.is, IdsButton);
+    </script>
+
+</dom-module>
